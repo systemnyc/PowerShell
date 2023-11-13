@@ -1,3 +1,4 @@
+
 ###########################################################
 ## Mirror Computer AD Group and Copy to another computer
 ## This script takes the old workstation name and new workstation name from standardinputer
@@ -14,13 +15,21 @@ $oldWks = Read-Host 'Enter Old Hostname'
 $newWks = ''
 
 # Diplay the groups from the old workstation
-$GroupNames = ((Get-ADComputer $comp2 -properties memberof).MemberOf | get-adgroup).name
+$oGroupNames = ((Get-ADComputer $oldWks -properties memberof).MemberOf | get-adgroup).name
 
 ## Display old workstation group
-Write-Host $GroupName
+Write-Host $oGroupNames
 
 #prompt for new workstation 
 $newWks = Read-Host "Enter New Workstation Hostname"
 
 ## Copy groups from old workstation to new workstation
 Add-ADPrincipalGroupMembership -Identity (Get-ADComputer $newWks) -MemberOf ((Get-ADComputer $oldWks -properties memberof).MemberOf | get-adgroup).name
+
+## Get new workstation hostnames
+# Diplay the groups from the old workstation
+$nGroupNames = ((Get-ADComputer $newWks -properties memberof).MemberOf | get-adgroup).name
+
+
+## Display old workstation group
+Write-Host $nGroupNames
