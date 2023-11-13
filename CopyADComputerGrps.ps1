@@ -10,7 +10,6 @@
 ###########################################################
 
 # Prompt for old workstation hostname
-
 $oldWks = Read-Host 'Enter Old Hostname'
 $newWks = ''
 
@@ -29,7 +28,6 @@ Add-ADPrincipalGroupMembership -Identity (Get-ADComputer $newWks) -MemberOf ((Ge
 ## Get new workstation hostnames
 # Diplay the groups from the old workstation
 $nGroupNames = ((Get-ADComputer $newWks -properties memberof).MemberOf | get-adgroup).name
-
 
 ## Display old workstation group
 Write-Host $nGroupNames
