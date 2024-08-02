@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-        Deactivate Active directory Users. Move Deactivated AD users to Disabled Users Directory
+        Deactivate Active directory Users from csv list. Move Deactivated AD users to Disabled Users Directory
     .DESCRIPTION
         This script searches the AD for a users or list of users. To Search a list
         Bulk users: Import a comma deliminated file
