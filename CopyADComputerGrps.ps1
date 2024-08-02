@@ -8,19 +8,19 @@
 ## Date 11/13/2023
 ###########################################################
 
-# Prompt for old workstation hostname
+## Prompt for old workstation hostname ##
 
 $oldWks = Read-Host 'Enter Old Hostname'
 $newWks = ''
 
-# Diplay the groups from the old workstation
+## Diplay the groups from the old workstation ##
 $GroupNames = ((Get-ADComputer $comp2 -properties memberof).MemberOf | get-adgroup).name
 
-## Display old workstation group
+## Display old workstation group ##
 Write-Host $GroupName
 
-#prompt for new workstation 
+### Prompt user for new workstation hostname ##
 $newWks = Read-Host "Enter New Workstation Hostname"
 
-## Copy groups from old workstation to new workstation
+## Copy groups from old workstation to new workstation ##
 Add-ADPrincipalGroupMembership -Identity (Get-ADComputer $newWks) -MemberOf ((Get-ADComputer $oldWks -properties memberof).MemberOf | get-adgroup).name
