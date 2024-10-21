@@ -1,0 +1,5 @@
+csv = Import-Csv -Path {PathNameHere}
+$ad = Get-ADUser -Filter "Enabled -eq 'True'" -SearchBase 'ou=example,ou=example,dc=example,dc=example'
+
+Compare-Object -ReferenceObject $csv.samAccountName -DifferenceObject $ad.samAccountName -IncludeEqual -ExcludeDifferent | Select-Object -Property InputObject | Export-Csv -Path .\match.csv -NoTypeInformation
+Compare-Object -ReferenceObject $csv.samAccountName -DifferenceObject $ad.samAccountName | Select-Object -Property InputObject | Export-Csv -Path .\notmatchusers.csv -NoTypeInformation
